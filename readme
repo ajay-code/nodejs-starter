@@ -6,5 +6,7 @@ This is a nodejs starter repo with typescript
 - Nodejs
 - Typescript
 - Mysql
-- libraries
+- Libraries
+  - express
   - knex.js
+
