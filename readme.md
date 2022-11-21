@@ -8,5 +8,5 @@ This is a nodejs starter repo with typescript
 - Mysql
 - Libraries
   - express
-  - knex.js
+  - knexjs
 
