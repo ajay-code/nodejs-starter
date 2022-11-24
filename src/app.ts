@@ -1,11 +1,12 @@
 import "module-alias/register";
 import "express-async-errors";
+import config from "@/config";
 import express, { Request, Response } from "express";
 import { errorHandler, notFound } from "@/middleware";
 
 const app = express();
-const port = 3000;
-const baseUrl = "http://localhost";
+const port = config.APP_PORT;
+const baseUrl = config.BASE_URL;
 
 app.get("/", (req: Request, res: Response) => {
   res.send("<h1>Hello, World!!</h1>");

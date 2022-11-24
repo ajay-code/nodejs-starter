@@ -1,16 +1,6 @@
-import knex from "knex"
+import config from "@/config";
+import knex from "knex";
 
-const db = knex({
-    client: 'mysql',
-    connection: {
-        host: "127.0.0.1",
-        port: 3306,
-        user: "user",
-        password: "password",
-        database: "test"
-    }
-})
+const db = knex(config.db);
 
-
-
-export default db
+export default db;
