@@ -1,2 +1,2 @@
-export {default as errorHandler} from './errorHandler'
-export {default as notFound} from './notFound'
+export * from "./errorHandler";
+export * from "./notFound";

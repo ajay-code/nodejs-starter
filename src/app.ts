@@ -1,19 +1,21 @@
 import "module-alias/register";
-import "express-async-errors"
-import express, { Request, Response } from "express"
-import {errorHandler, notFound} from "@/middleware/index";
+import "express-async-errors";
+import express, { Request, Response } from "express";
+import { errorHandler, notFound } from "@/middleware";
 
+const app = express();
+const port = 3000;
+const baseUrl = "http://localhost";
 
-const app = express()
-
-
-app.get("/", (req, res) => {
-    res.send("<h1>Hello, World!!</h1>")
-})
+app.get("/", (req: Request, res: Response) => {
+  res.send("<h1>Hello, World!!</h1>");
+});
 
 // 404 middleware
-app.use(notFound)
+app.use(notFound);
 // errorHandler middleware
-app.use(errorHandler)
+app.use(errorHandler);
 
-app.listen(3000)
+app.listen(port, () => {
+  console.log(`The website is running on ${baseUrl}:${port}`);
+});
