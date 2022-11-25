@@ -1,15 +1,14 @@
 import "express-async-errors";
-import config from "@/config";
+import config from "./config";
 import express, { Request, Response } from "express";
-import { errorHandler, notFound } from "@/middleware";
+import { errorHandler, notFound } from "./middleware";
+import routes from "./routes";
 
 const app = express();
 const port = config.APP_PORT;
 const baseUrl = config.BASE_URL;
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("<h1>Hello, World!!!</h1>");
-});
+routes(app);
 
 // 404 middleware
 app.use(notFound);
