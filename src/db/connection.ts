@@ -1,4 +1,4 @@
-import config from "@/config";
+import config from "#src/config/index.js";
 import knex from "knex";
 
 const db = knex({

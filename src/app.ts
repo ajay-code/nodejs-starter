@@ -1,8 +1,8 @@
 import "express-async-errors";
-import config from "./config";
+import config from "#src/config/index.js";
 import express, { Request, Response } from "express";
-import { errorHandler, notFound } from "./middleware";
-import routes from "./routes";
+import { errorHandler, notFound } from "#src/middleware/index.js";
+import routes from "#src/routes/index.js";
 
 const app = express();
 const port = config.APP_PORT;
