@@ -4,7 +4,7 @@
   "description": "nodejs starter with express and typescript setup",
   "main": "index.js",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=16.0.0"
   },
   "type": "module",
   "engineStrict": true,

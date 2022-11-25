@@ -4,7 +4,7 @@ This is a nodejs starter repo with typescript
 
 ### Build Requirements
 
-- node >=18.0.0
+- node >=16.0.0
 - Dev requirements
   - typescript (tsc typescript compiler)
   - tsc-alias
