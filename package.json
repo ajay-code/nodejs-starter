@@ -2,7 +2,7 @@
   "name": "nodejs-stater",
   "version": "1.0.0",
   "description": "nodejs starter with express and typescript setup",
-  "main": "index.js",
+  "main": "./dist/app.js",
   "type": "module",
   "engines": {
     "node": ">=16.0.0"
@@ -13,7 +13,9 @@
     "start": "node dist/app.js",
     "build": "tsc",
     "dev": "concurrently \"tsc -w\" \"npm:nodemon\"",
-    "nodemon": "nodemon -w dist dist/app.js"
+    "nodemon": "nodemon -w dist dist/app.js",
+    "migrate": "knex migrate:latest --knexfile dist/db/knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile dist/db/knexfile.js"
   },
   "keywords": [],
   "author": "Ajay Singh",
