@@ -14,7 +14,7 @@ export const up = (knex: Knex): Promise<void> => {
   return knex.schema.hasTable("users").then((exists) => {
     if (!exists) {
       knex.schema.createTable("users", (table) => {
-        table.increments("user_id");
+        table.increments("id");
         table.string("email").notNullable().unique();
         table.string("name").notNullable();
         table.string("username").notNullable().unique();
