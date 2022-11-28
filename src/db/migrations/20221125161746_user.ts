@@ -1,6 +1,6 @@
 import { Knex } from "knex";
 
-interface User {
+export interface User {
   id: number;
   email: string;
   fullname: string;
@@ -13,7 +13,7 @@ interface User {
 export const up = (knex: Knex): Promise<void> => {
   return knex.schema.hasTable("users").then((exists) => {
     if (!exists) {
-      knex.schema.createTable("users", (table) => {
+      return knex.schema.createTable("users", (table) => {
         table.increments("id");
         table.string("email").notNullable().unique();
         table.string("name").notNullable();
