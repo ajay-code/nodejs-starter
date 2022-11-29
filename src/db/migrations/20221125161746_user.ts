@@ -11,18 +11,13 @@ export interface User {
 }
 
 export const up = (knex: Knex): Promise<void> => {
-  return knex.schema.hasTable("users").then((exists) => {
-    if (!exists) {
-      return knex.schema.createTable("users", (table) => {
-        table.increments("id");
-        table.string("email").notNullable().unique();
-        table.string("name").notNullable();
-        table.string("username").notNullable().unique();
-        table.string("password").notNullable();
-        table.timestamp("createdAt").defaultTo(knex.raw("CURRENT_TIMESTAMP"));
-        table.timestamp("updatedAt").defaultTo(knex.raw("CURRENT_TIMESTAMP"));
-      });
-    }
+  return knex.schema.createTable("users", (table) => {
+    table.increments("id");
+    table.string("email").notNullable().unique();
+    table.string("name").notNullable();
+    table.string("password").notNullable();
+    table.timestamp("createdAt").defaultTo(knex.raw("CURRENT_TIMESTAMP"));
+    table.timestamp("updatedAt").defaultTo(knex.raw("CURRENT_TIMESTAMP"));
   });
 };
 
