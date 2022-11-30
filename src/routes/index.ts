@@ -20,8 +20,6 @@ export const routes = (app: Express) => {
     res.json(req.user)
   })
 
-
-
 };
 
 export default routes;

@@ -2,7 +2,7 @@ import "express-async-errors";
 import path from "path";
 import config from "#src/config/index.js";
 import express from "express";
-import session from "express-session";
+import session, { SessionOptions } from "express-session";
 import knexSession from "connect-session-knex";
 import * as middleware from "#src/middleware/index.js";
 import routes from "#src/routes/index.js";
@@ -22,8 +22,8 @@ app.set("view engine", "ejs");
 app.use(express.json()); // parse json
 app.use(express.urlencoded()); // parse form data
 
-// initialize session middleware
-const sessionOpt = {
+// setting up express session
+const sessionOpts: SessionOptions = {
   secret: config.APP_KEY,
   resave: false,
   saveUninitialized: true,
@@ -34,8 +34,9 @@ const sessionOpt = {
     clearInterval: 1000 * 60 * 60,
   }),
 };
-app.use(session(sessionOpt));
+app.use(session(sessionOpts));
 
+// setting passport auth
 app.use(passport.initialize());
 app.use(passport.session());
 // add routes to the app
