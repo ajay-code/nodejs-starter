@@ -10,10 +10,10 @@
   "engineStrict": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/bin/www.js",
+    "start": "node dist/server.js",
     "build": "tsc",
     "dev": "concurrently \"tsc -w\" \"npm:nodemon\"",
-    "nodemon": "nodemon -w dist dist/bin/www.js",
+    "nodemon": "nodemon -w dist dist/server.js",
     "migrate": "knex migrate:latest --knexfile dist/db/knexfile.js",
     "rollback": "knex migrate:rollback --knexfile dist/db/knexfile.js"
   },
