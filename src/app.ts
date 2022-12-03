@@ -16,32 +16,44 @@ app.use(express.static(path.resolve(__dirname, "../public")));
 app.set("views", path.resolve(__dirname, "../views"));
 app.set("view engine", "ejs");
 
-// parse request data
+/**
+ * parse request data
+ */ 
 app.use(express.json()); // parse json
 app.use(express.urlencoded({ extended: false })); // parse form data
 
-// setting up express session
-const knexSessionStore = knexSession(session);
-const sessionOpts: SessionOptions = {
-  secret: config.APP_KEY,
-  resave: false,
-  saveUninitialized: true,
-  store: new knexSessionStore({
-    knex: db,
-    tablename: "sessions",
-    createtable: true,
-    clearInterval: 1000 * 60 * 60,
-  }),
-};
-app.use(session(sessionOpts));
+/** 
+ *  setting up express session
+ */ 
+// const knexSessionStore = knexSession(session);
+// const sessionOpts: SessionOptions = {
+//   secret: config.APP_KEY,
+//   resave: false,
+//   saveUninitialized: true,
+//   store: new knexSessionStore({
+//     knex: db,
+//     tablename: "sessions",
+//     createtable: true,
+//     clearInterval: 1000 * 60 * 60,
+//   }),
+// };
+// app.use(session(sessionOpts));
 
-// setting passport auth
+/** 
+ * setting passport auth
+ */
 app.use(passport.initialize());
 app.use(passport.session());
-// add routes to the app
+
+/**
+ * add routes to the app
+ */ 
 routes(app);
 
-// 404 middleware
+/**
+ * middleware
+ */ 
 app.use(middleware.notFound);
 app.use(middleware.errorHandler);
+
 export default app;

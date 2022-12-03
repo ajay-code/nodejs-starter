@@ -16,8 +16,8 @@ export const up = (knex: Knex): Promise<void> => {
     table.string("email").notNullable().unique();
     table.string("name").notNullable();
     table.string("password").notNullable();
-    table.timestamp("createdAt").defaultTo(knex.raw("CURRENT_TIMESTAMP"));
-    table.timestamp("updatedAt").defaultTo(knex.raw("CURRENT_TIMESTAMP"));
+    table.timestamp("created_at").defaultTo(knex.raw("CURRENT_TIMESTAMP"));
+    table.timestamp("updated_at").defaultTo(knex.raw("CURRENT_TIMESTAMP"));
   });
 };
 
