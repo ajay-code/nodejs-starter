@@ -14,6 +14,7 @@
     "build": "tsc",
     "dev": "concurrently \"tsc -w\" \"npm:nodemon\"",
     "nodemon": "nodemon -w dist dist/server.js",
+    "genJwtKey": "scripts/genJwtKeys.sh",
     "migrate": "knex migrate:latest --knexfile dist/db/knexfile.js",
     "rollback": "knex migrate:rollback --knexfile dist/db/knexfile.js"
   },

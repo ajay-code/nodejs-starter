@@ -1,5 +1,5 @@
-import fs from "node:fs"
 import passport from "passport"
+import config from "#src/config/index.js"
 import db from "#src/db/index.js"
 import { Strategy as LocalStrategy } from "passport-local"
 import { localLogin, Done, jwtAuth } from "./statergy.js"
@@ -25,7 +25,7 @@ passport.use(new LocalStrategy({ usernameField: "email", passwordField: "passwor
 // JWT Strategy
 const jwtOpts: StrategyOptions = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: fs.readFileSync(".keys/jwtRS256.key.pub", "utf-8"),
+  secretOrKey: config.JWT_KEY_PUB,
   algorithms: ["RS256"]
 }
 

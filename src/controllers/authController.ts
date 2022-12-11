@@ -1,12 +1,11 @@
 import { Request, Response } from "express"
 import jsonwebtoken from "jsonwebtoken"
 import fs from "fs"
+import config from "#src/config/index.js";
 
 export const loginForm = (req: Request, res: Response) => {
   res.render("auth/login", { title: "Login Page" });
 }
-
-const JWT_KEY = fs.readFileSync(".keys/jwtRS256.key", "utf-8")
 
 function issueBearerJWT(user: User) {
   const id = user.id
@@ -16,7 +15,7 @@ function issueBearerJWT(user: User) {
     iat: Date.now()
   }
 
-  const signedToken = jsonwebtoken.sign(payload, JWT_KEY, { expiresIn: expiresIn, algorithm: "RS256" })
+  const signedToken = jsonwebtoken.sign(payload, config.JWT_KEY, { expiresIn: expiresIn, algorithm: "RS256" })
   return "Bearer " + signedToken
 }
 
