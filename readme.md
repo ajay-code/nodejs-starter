@@ -21,11 +21,12 @@ This is a nodejs starter repo with typescript
   - knexjs
 
 ### How to use Nodejs Starter
-  1. git clone https://github.com/ajay-code/nodejs-starter
-  2. npm install
-  3. create .env file. Setup all ENV variables
-  4. npm run migrate
-  5. npm run dev (for development) OR npm run build (to build the project but not run)
+  1.  git clone https://github.com/ajay-code/nodejs-starter
+  2.  npm install
+  3.1 create .env file. Setup all ENV variables
+  3.2 gerate rsa keys[jwtRS256.key, jwtRS256.key.pub] in .keys folder for jwt encryption
+  4.  npm run migrate
+  5.  npm run dev (for development) OR npm run build (to build the project but not run)
 
 ### NPM commands available
   - npm run build (compiles TS to JS)

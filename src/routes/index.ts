@@ -14,9 +14,13 @@ export const routes = (app: Express) => {
 
   app.route("/login")
     .get(authController.loginForm)
-    .post(passport.authenticate("local", { failureRedirect: "/login", successRedirect: "/dashboard" }))
+    .post(passport.authenticate("local", { failureRedirect: "/login", session: false }), authController.login)
 
   app.get("/dashboard", (req: Request, res: Response) => {
+    res.json(req.user)
+  })
+
+  app.get("/me", passport.authenticate('jwt', { session: false }), (req: Request, res: Response) => {
     res.json(req.user)
   })
 
