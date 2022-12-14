@@ -1,6 +1,7 @@
 import { Express, Request, Response } from "express";
-import * as authController from "#src/controllers/authController.js"
+import * as authController from "#src/controllers/authController/index.js"
 import passport from "passport";
+import apiRouter from "./api/v1/index.js";
 
 /**
  * Add all the routes to the expresss app
@@ -23,6 +24,8 @@ export const routes = (app: Express) => {
   app.get("/me", passport.authenticate('jwt', { session: false }), (req: Request, res: Response) => {
     res.json(req.user)
   })
+
+  app.use("/api/v1", apiRouter)
 
 };
 

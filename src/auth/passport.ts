@@ -25,7 +25,7 @@ passport.use(new LocalStrategy({ usernameField: "email", passwordField: "passwor
 // JWT Strategy
 const jwtOpts: StrategyOptions = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: config.JWT_KEY_PUB,
+  secretOrKey: config.JWT.PUB_KEY,
   algorithms: ["RS256"]
 }
 
