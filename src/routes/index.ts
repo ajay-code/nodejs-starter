@@ -4,10 +4,10 @@ import passport from "passport";
 import apiRouter from "./api/v1/index.js";
 
 /**
- * Add all the routes to the expresss app
+ * Add all the routes to the express app
  * @param app {Express}
  */
-export const routes = (app: Express) => {
+export const addRoutes = (app: Express) => {
 
   app.get("/", (req: Request, res: Response) => {
     res.render("index", { title: "Home Page" });
@@ -25,8 +25,9 @@ export const routes = (app: Express) => {
     res.json(req.user)
   })
 
+  // add api/v1 routes
   app.use("/api/v1", apiRouter)
 
 };
 
-export default routes;
+export default addRoutes;

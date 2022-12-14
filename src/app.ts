@@ -1,6 +1,6 @@
 // import config from "#src/config/index.js";
 import * as middleware from "#src/middleware/index.js";
-import routes from "#src/routes/index.js";
+import addRoutes from "#src/routes/index.js";
 import express from "express";
 // import session, { SessionOptions } from "express-session";
 // import knexSession from "connect-session-knex";
@@ -47,7 +47,7 @@ app.use(passport.initialize());
 /**
  * add routes to the app
  */
-routes(app);
+addRoutes(app);
 
 /**
  * middleware
