@@ -1,7 +1,7 @@
 import { Express, Request, Response } from "express";
-import * as authController from "#src/controllers/auth.controller.js"
 import apiRouter from "./api/api.routes.js";
 import { isAuthenticated } from "#src/middleware/auth.middleware.js";
+import authRouter from "./auth.routes.js";
 
 /**
  * Add all the routes to the express app
@@ -13,14 +13,6 @@ export const addRoutes = (app: Express) => {
     res.render("index", { title: "Home Page" });
   });
 
-  app.route("/login")
-    .get(authController.loginForm)
-    .post(authController.login)
-
-  app.route("/register")
-    .get(authController.registerForm)
-    .post(authController.register)
-
   app.get("/dashboard", isAuthenticated, (req: Request, res: Response) => {
     res.json(req.user)
   })
@@ -29,8 +21,11 @@ export const addRoutes = (app: Express) => {
     res.json(req.payload)
   })
 
+  // add auth routes
+  app.use(authRouter)
+
   // add api/v1 routes
-  app.use("/api", apiRouter)
+  app.use("/api", isAuthenticated, apiRouter)
 
 };
 

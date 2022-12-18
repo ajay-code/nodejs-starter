@@ -1,6 +1,6 @@
 // import config from "#src/config/index.js";
 import * as middleware from "#src/middleware/index.middleware.js";
-import addRoutes from "#src/routes/index.js";
+import addRoutes from "#src/routes/index.routes.js";
 import express from "express";
 import path from "node:path";
 import { getDirname } from "./utils/index.js";

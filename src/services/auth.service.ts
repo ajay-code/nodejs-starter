@@ -1,4 +1,3 @@
-import config from "#src/config/index.js"
 import { Knex } from "knex";
 import passwordService from "./password.service.js";
 
@@ -6,12 +5,12 @@ interface UserInfo extends Omit<User, 'id' | 'created_at' | 'updated_at'> { }
 
 class AuthService {
 
-  public async registerUser(user: UserInfo, db: Knex.QueryBuilder<User>) {
+  public async registerUser(user: UserInfo, userdb: Knex.QueryBuilder<User>) {
     let { email, name, password } = user
     const hashedPassword = await passwordService.hash(password)
     password = hashedPassword;
 
-    await db.insert({
+    await userdb.insert({
       email,
       name,
       password

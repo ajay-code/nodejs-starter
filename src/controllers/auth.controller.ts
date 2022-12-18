@@ -1,9 +1,9 @@
-import { Request, Response } from "express"
-import jwtService, { JWTPayload } from "#src/services/jwt.service.js";
-import authService from "#src/services/auth.service.js";
-import db from "#src/db/db.js";
 import * as zod from "zod";
+import { Request, Response } from "express"
+import userdb from "#src/models/user.model.js"
+import authService from "#src/services/auth.service.js";
 import { registerSchema, loginSchema } from "./validators.js";
+import jwtService, { JWTPayload } from "#src/services/jwt.service.js";
 
 export const loginForm = (req: Request, res: Response) => {
   res.render("auth/login", { title: "Login Page" });
@@ -18,7 +18,6 @@ export const login = async (req: Request, res: Response) => {
     return
   }
 
-  const userdb = db<User>('users')
   const user = await authService.loginUser(credencials, userdb)
   const jwtPayload: JWTPayload = {
     email: user.email,
@@ -49,7 +48,6 @@ export const register = async (req: Request, res: Response) => {
 
   // created user
   const userInfo = { name: userData.name, email: userData.email, password: userData.password }
-  const userdb = db<User>("users")
   try {
     await authService.registerUser(userInfo, userdb)
   } catch (error: any) {
