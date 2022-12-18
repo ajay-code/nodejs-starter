@@ -13,13 +13,15 @@ export const addRoutes = (app: Express) => {
     res.render("index", { title: "Home Page" });
   });
 
-  app.get("/dashboard", isAuthenticated, (req: Request, res: Response) => {
+  app.get("/me", isAuthenticated, (req: Request, res: Response) => {
     res.json(req.user)
   })
 
-  app.get("/me", isAuthenticated, (req: Request, res: Response) => {
+  app.get("/jwt-payload", isAuthenticated, (req: Request, res: Response) => {
     res.json(req.payload)
   })
+
+
 
   // add auth routes
   app.use(authRouter)
