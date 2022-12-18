@@ -5,7 +5,6 @@ import express from "express";
 // import session, { SessionOptions } from "express-session";
 // import knexSession from "connect-session-knex";
 import path from "node:path";
-import passport from "./auth/passport.js";
 import { getDirname } from "./utils/index.js";
 
 const __dirname = getDirname(import.meta.url);
@@ -37,12 +36,6 @@ app.use(express.urlencoded({ extended: false })); // parse form data
 //   }),
 // };
 // app.use(session(sessionOpts));
-
-/** 
- * setting passport auth
- */
-app.use(passport.initialize());
-// app.use(passport.session());
 
 /**
  * add routes to the app

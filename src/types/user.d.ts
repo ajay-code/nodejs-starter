@@ -9,7 +9,7 @@ interface User {
   updated_at: string;
 }
 
-interface UserApi extends Omit<User, "password"|"created_at"|"updated_at">{}
+interface UserApi extends Omit<User, "password" | "created_at" | "updated_at"> { }
 
-const user:UserApi = {}
+const user: UserApi = {}
 user

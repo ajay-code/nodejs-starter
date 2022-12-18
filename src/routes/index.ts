@@ -1,7 +1,7 @@
 import { Express, Request, Response } from "express";
-import * as authController from "#src/controllers/authController/index.js"
-import passport from "passport";
+import * as authController from "#src/controllers/auth.controller.js"
 import apiRouter from "./api/v1/index.js";
+import { isAuthenticated } from "#src/middleware/auth.middleware.js";
 
 /**
  * Add all the routes to the express app
@@ -15,14 +15,18 @@ export const addRoutes = (app: Express) => {
 
   app.route("/login")
     .get(authController.loginForm)
-    .post(passport.authenticate("local", { failureRedirect: "/login", session: false }), authController.login)
+    .post(authController.login)
 
-  app.get("/dashboard", (req: Request, res: Response) => {
+  app.route("/register")
+    .get(authController.registerForm)
+    .post(authController.register)
+
+  app.get("/dashboard", isAuthenticated, (req: Request, res: Response) => {
     res.json(req.user)
   })
 
-  app.get("/me", passport.authenticate('jwt', { session: false }), (req: Request, res: Response) => {
-    res.json(req.user)
+  app.get("/me", isAuthenticated, (req: Request, res: Response) => {
+    res.json(req.payload)
   })
 
   // add api/v1 routes

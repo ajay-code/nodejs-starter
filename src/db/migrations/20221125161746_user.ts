@@ -6,8 +6,8 @@ export interface User {
   fullname: string;
   username: string;
   password: string;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export const up = (knex: Knex): Promise<void> => {
