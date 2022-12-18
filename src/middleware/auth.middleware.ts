@@ -1,4 +1,4 @@
-import db from "#src/db/index.js"
+import db from "#src/db/db.js"
 import JWTService, { JWTPayload } from "#src/services/jwt.service.js"
 import { Request, Response } from "express"
 

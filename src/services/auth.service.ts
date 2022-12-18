@@ -28,8 +28,8 @@ class AuthService {
     if (!passwordValid) {
       throw Error("password not valid")
     }
-
-    return user satisfies User
+    user satisfies User
+    return user
   }
 }
 

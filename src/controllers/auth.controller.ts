@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import jwtService, { JWTPayload } from "#src/services/jwt.service.js";
 import authService from "#src/services/auth.service.js";
-import db from "#src/db/index.js";
+import db from "#src/db/db.js";
 import * as zod from "zod";
 import { registerSchema, loginSchema } from "./validators.js";
 

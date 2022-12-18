@@ -30,7 +30,7 @@ export const addRoutes = (app: Express) => {
   })
 
   // add api/v1 routes
-  app.use("/api/v1", apiRouter)
+  app.use("/api", apiRouter)
 
 };
 
