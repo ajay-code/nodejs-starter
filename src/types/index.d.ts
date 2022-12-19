@@ -1,12 +1,9 @@
+import { Express } from 'express'
+
 export declare global {
   namespace Express {
-    interface User {
+    interface User extends UserApi {
       id: number
-    }
-  }
-
-  namespace Session {
-    interface SessionData {
     }
   }
 }
