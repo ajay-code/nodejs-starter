@@ -1,15 +1,12 @@
 #! /usr/bin/env node
 import * as fs from "node:fs"
-import {randomBytes} from "node:crypto"
-import { getDirname } from "#src/utils/getDirname.js"
-
+import { randomBytes } from "node:crypto"
 
 function genKey(): string {
     return randomBytes(32).toString('hex')
 }
 
-const __dirname = getDirname(import.meta.url)
-function updateEnv(key:string, value:string) {
+function updateEnv(key: string, value: string) {
     const data = fs.readFileSync('.env', 'utf-8')
     const lines = data.split('\n')
     let found = false

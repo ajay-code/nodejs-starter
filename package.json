@@ -14,10 +14,10 @@
     "build": "tsc",
     "dev": "concurrently \"tsc -w\" \"npm:nodemon\"",
     "nodemon": "nodemon -w dist dist/server.js",
-    "genJwtKeys": "",
-    "migrate": "knex migrate:latest --knexfile dist/db/knexfile.js",
-    "rollback": "knex migrate:rollback --knexfile dist/db/knexfile.js",
-    "seed": "knex seed:run --knexfile dist/db/knexfile.js"
+    "gen:key": "node dist/scripts/genKey.js",
+    "db:migrate": "knex migrate:latest --knexfile dist/db/knexfile.js",
+    "db:rollback": "knex migrate:rollback --knexfile dist/db/knexfile.js",
+    "db:seed": "knex seed:run --knexfile dist/db/knexfile.js"
   },
   "keywords": [],
   "author": "Ajay Singh",

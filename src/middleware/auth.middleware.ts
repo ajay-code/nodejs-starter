@@ -1,4 +1,5 @@
 import db from "#src/db/db.js"
+import User from "#src/models/user.model.js"
 import JWTService, { JWTPayload } from "#src/services/jwt.service.js"
 import { Request, Response } from "express"
 
@@ -28,7 +29,7 @@ export async function isAuthenticated(req: Request, res: Response, next: Functio
 
   req.payload = payload as JWTPayload
 
-  const user = await db<User>('users').select('id', 'name', 'email', 'created_at', 'updated_at').where({ id: req.payload.userId }).first()
+  const user = await User.select('id', 'name', 'email', 'created_at', 'updated_at').where({ id: req.payload.userId }).first()
   if (!user) {
     throw Error("user not found")
   }
