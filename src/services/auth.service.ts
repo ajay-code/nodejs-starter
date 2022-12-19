@@ -6,25 +6,25 @@ interface UserInfo extends Omit<User, 'id' | 'created_at' | 'updated_at'> { }
 
 class AuthService {
 
-  public async registerUser(user: UserInfo, userdb: Knex.QueryBuilder<User>) {
+  public async registerUser(user: UserInfo, User: Knex.QueryBuilder<User>) {
     let { email, name, password } = user
     const hashedPassword = await passwordService.hash(password)
     password = hashedPassword;
 
-    await userdb.insert({
+    return User.insert({
       email,
       name,
       password
     })
   }
 
-  public async loginUser(credencials: { email: string, password: string }, userdb: Knex.QueryBuilder<User>): Promise<User> {
-    const user = await userdb.where('email', credencials.email).first()
+  public async loginUser(credentials: { email: string, password: string }, User: Knex.QueryBuilder<User>): Promise<User> {
+    const user = await User.where('email', credentials.email).first()
     if (!user) {
       throw Error('no user found')
     }
 
-    const passwordValid = await passwordService.compare(credencials.password, user.password)
+    const passwordValid = await passwordService.compare(credentials.password, user.password)
     if (!passwordValid) {
       throw Error("password not valid")
     }

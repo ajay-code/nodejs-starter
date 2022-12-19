@@ -7,25 +7,22 @@ export type JWTPayload = {
 }
 
 class JWTService {
-  private pvtKey: string
-  private pubKey: string
+  private secretKey: string
   private expiresIn = '28d'
 
-  constructor(pvtKey: string, pubKey: string) {
-    this.pvtKey = pvtKey
-    this.pubKey = pubKey
+  constructor(secret: string) {
+    this.secretKey = secret
   }
 
   public generateToken(payload: JWTPayload): string {
-    return jwt.sign(payload, this.pvtKey, {
+    return jwt.sign(payload, this.secretKey, {
       expiresIn: this.expiresIn,
-      algorithm: "RS256"
     })
   }
 
   public verifyToken(token: string) {
     try {
-      let decoded = jwt.verify(token, this.pubKey)
+      let decoded = jwt.verify(token, this.secretKey)
       return decoded;
     } catch (error) {
       return false
@@ -33,4 +30,4 @@ class JWTService {
   }
 }
 
-export default new JWTService(config.JWT.PVT_KEY, config.JWT.PUB_KEY)
+export default new JWTService(config.APP_KEY)

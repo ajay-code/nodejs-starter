@@ -1,6 +1,6 @@
 import * as zod from "zod";
 import { Request, Response } from "express"
-import userdb from "#src/models/user.model.js"
+import User from "#src/models/user.model.js"
 import authService from "#src/services/auth.service.js";
 import { registerSchema, loginSchema } from "./validators.js";
 import jwtService, { JWTPayload } from "#src/services/jwt.service.js";
@@ -10,15 +10,15 @@ export const loginForm = (req: Request, res: Response) => {
 }
 
 export const login = async (req: Request, res: Response) => {
-  let credencials: zod.infer<typeof loginSchema>
+  let credentials: zod.infer<typeof loginSchema>
   try {
-    credencials = loginSchema.parse(req.body)
+    credentials = loginSchema.parse(req.body)
   } catch (error: any) {
     res.json({ error: error.message })
     return
   }
 
-  const user = await authService.loginUser(credencials, userdb)
+  const user = await authService.loginUser(credentials, User)
   const jwtPayload: JWTPayload = {
     email: user.email,
     userId: user.id
@@ -49,7 +49,7 @@ export const register = async (req: Request, res: Response) => {
   // created user
   const userInfo = { name: userData.name, email: userData.email, password: userData.password }
   try {
-    await authService.registerUser(userInfo, userdb)
+    await authService.registerUser(userInfo, User)
   } catch (error: any) {
     throw error
   }
