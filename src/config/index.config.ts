@@ -1,6 +1,5 @@
 import "./loadEnv.js";
-import DB from "./database.js";
-import JWT from "./jwt.js"
+import DB from "./database.config.js";
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 const BASE_URL = process.env.BASE_URL || "http://localhost";
@@ -14,6 +13,5 @@ export default {
   APP_PORT,
   API_URL,
   APP_KEY,
-  JWT,
   DB,
 };
