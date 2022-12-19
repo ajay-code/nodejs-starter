@@ -1,3 +1,4 @@
+import { User } from "#src/models/user.model.js";
 import { Knex } from "knex";
 import passwordService from "./password.service.js";
 
