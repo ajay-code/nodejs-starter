@@ -6,6 +6,7 @@ export function errorHandler(
   res: Response,
   next: Function
 ) {
+  console.log(error)
   res.status(500).json({
     error: {
       msg: error.message,
