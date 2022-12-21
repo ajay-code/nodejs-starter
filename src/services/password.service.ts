@@ -1,6 +1,6 @@
 import bcrypt, { hash } from "bcrypt"
 
-class Password {
+export class PasswordService {
   private slatRounds: number
 
   constructor(saltRounds: number) {
@@ -16,4 +16,4 @@ class Password {
   }
 }
 
-export default new Password(10)
+export default new PasswordService(10)
