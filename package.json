@@ -15,9 +15,9 @@
     "dev": "concurrently \"tsc -w\" \"npm:nodemon\"",
     "nodemon": "nodemon -w dist dist/server.js",
     "gen:key": "node dist/scripts/genKey.js",
-    "db:migrate": "knex migrate:latest --knexfile dist/db/knexfile.js",
-    "db:rollback": "knex migrate:rollback --knexfile dist/db/knexfile.js",
-    "db:seed": "knex seed:run --knexfile dist/db/knexfile.js"
+    "db:migrate": "knex migrate:latest --knexfile dist/lib/knex/knexFile.js",
+    "db:rollback": "knex migrate:rollback --knexfile dist/lib/knex/knexFile.js",
+    "db:seed": "knex seed:run --knexfile dist/lib/knex/knexFile.js"
   },
   "keywords": [],
   "author": "Ajay Singh",
