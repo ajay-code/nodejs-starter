@@ -1,6 +1,7 @@
 import path from "node:path";
 import express from "express";
 import helmet from "helmet"
+import cookieParser from "cookie-parser"
 import * as middleware from "#src/middleware/index.middleware.js";
 import addRoutes from "#src/routes/index.routes.js";
 import { getDirname } from "#src/utils/index.js";
@@ -8,13 +9,13 @@ import { getDirname } from "#src/utils/index.js";
 const __dirname = getDirname(import.meta.url);
 const app = express();
 
-app.set("views", path.resolve(__dirname, "../views"));
-app.set("view engine", "ejs");
-app.disable('x-powered-by')
+
+// app.disable('x-powered-by')
 
 /**
- * parse request data
+ * parse request
 */
+app.use(cookieParser())
 app.use(express.json()); // parse json
 app.use(express.urlencoded({ extended: false })); // parse form data
 
