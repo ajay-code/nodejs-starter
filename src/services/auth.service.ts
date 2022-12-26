@@ -2,11 +2,11 @@ import { User } from "#src/models/user.model.js";
 import { Knex } from "knex";
 import passwordService from "./password.service.js";
 
-interface UserInfo extends Omit<User, 'id' | 'created_at' | 'updated_at'> { }
+interface UserData extends Omit<User, 'id' | 'created_at' | 'updated_at'> { }
 
 class AuthService {
 
-  public async registerUser(user: UserInfo, User: Knex.QueryBuilder<User>) {
+  public async registerUser(user: UserData, User: Knex.QueryBuilder<User>) {
     let { email, name, password } = user
     const hashedPassword = await passwordService.hash(password)
     password = hashedPassword;
@@ -19,7 +19,7 @@ class AuthService {
   }
 
   public async loginUser(credentials: { email: string, password: string }, User: Knex.QueryBuilder<User>): Promise<User> {
-    const user = await User.where('email', credentials.email).first()
+    const user: User = await User.where('email', credentials.email).first()
     if (!user) {
       throw Error('no user found')
     }
@@ -28,7 +28,7 @@ class AuthService {
     if (!passwordValid) {
       throw Error("password not valid")
     }
-    user satisfies User
+
     return user
   }
 }
