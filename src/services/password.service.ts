@@ -1,19 +1,19 @@
-import bcrypt, { hash } from "bcrypt"
+import bcrypt, { hash } from 'bcrypt'
 
 export class PasswordService {
-  private slatRounds: number
+    private slatRounds: number
 
-  constructor(saltRounds: number) {
-    this.slatRounds = saltRounds
-  }
+    constructor(saltRounds: number) {
+        this.slatRounds = saltRounds
+    }
 
-  public hash(password: string) {
-    return bcrypt.hash(password, this.slatRounds)
-  }
+    public hash(password: string) {
+        return bcrypt.hash(password, this.slatRounds)
+    }
 
-  public compare(password: string, hash: string) {
-    return bcrypt.compare(password, hash)
-  }
+    public compare(password: string, hash: string) {
+        return bcrypt.compare(password, hash)
+    }
 }
 
 export default new PasswordService(10)

@@ -1,1 +1,1 @@
-export * from "./getDirname.js";
+export * from './getDirname.js'

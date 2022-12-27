@@ -1,5 +1,5 @@
-import { fileURLToPath } from "node:url";
-import { dirname } from "node:path";
+import { fileURLToPath } from 'node:url'
+import { dirname } from 'node:path'
 
 /**
  * pass in the import.meta.url variable
@@ -8,6 +8,6 @@ import { dirname } from "node:path";
  * @returns {string} directory path for file
  */
 export function getDirname(importMetaUrl: string): string {
-  const __dirname = dirname(fileURLToPath(importMetaUrl));
-  return __dirname;
+    const __dirname = dirname(fileURLToPath(importMetaUrl))
+    return __dirname
 }
