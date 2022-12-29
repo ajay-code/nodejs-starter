@@ -25,8 +25,13 @@ export const login = async (req: Request, res: Response) => {
     }
     const token = jwtService.generateToken(jwtPayload)
 
+    res.cookie('token', token, {
+        httpOnly: true,
+        maxAge: 3600 * 24 * 30,
+        path: '/',
+    })
+
     res.json({
-        token,
         user,
     })
 }

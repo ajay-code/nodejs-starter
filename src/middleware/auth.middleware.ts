@@ -16,14 +16,13 @@ export async function isAuthenticated(
     res: Response,
     next: Function
 ) {
-    const authorization = req.headers.authorization
+    const token = req.cookies.token
 
-    if (!authorization) {
+    if (!token) {
         res.status(401).json({ error: 'no token provided' })
         return
     }
 
-    const token = authorization.split(' ')[1]
     const payload = JWTService.verifyToken(token)
 
     if (!payload) {
@@ -32,19 +31,19 @@ export async function isAuthenticated(
 
     req.payload = payload as JWTPayload
 
-    const user = await User.select(
-        'id',
-        'name',
-        'email',
-        'created_at',
-        'updated_at'
-    )
-        .where({ id: req.payload.userId })
-        .first()
-    if (!user) {
-        throw Error('user not found')
-    }
-    req.user = user
+    // const user = await User.select(
+    //     'id',
+    //     'name',
+    //     'email',
+    //     'created_at',
+    //     'updated_at'
+    // )
+    //     .where({ id: req.payload.userId })
+    //     .first()
+    // if (!user) {
+    //     throw Error('user not found')
+    // }
+    // req.user = user
 
     next()
 }
