@@ -1,58 +1,62 @@
-import * as zod from "zod";
-import { Request, Response } from "express"
-import User from "#src/models/user.model.js"
-import authService from "#src/services/auth.service.js";
-import { registerSchema, loginSchema } from "./validators.js";
-import jwtService, { JWTPayload } from "#src/services/jwt.service.js";
+import * as zod from 'zod'
+import { Request, Response } from 'express'
+import User from '#src/models/user.model.js'
+import authService from '#src/services/auth.service.js'
+import { registerSchema, loginSchema } from './validators.js'
+import jwtService, { JWTPayload } from '#src/services/jwt.service.js'
 
 export const loginForm = (req: Request, res: Response) => {
-  res.render("auth/login", { title: "Login Page" });
+    res.render('auth/login', { title: 'Login Page' })
 }
 
 export const login = async (req: Request, res: Response) => {
-  let credentials: zod.infer<typeof loginSchema>
-  try {
-    credentials = loginSchema.parse(req.body)
-  } catch (error: any) {
-    res.json({ error: error.message })
-    return
-  }
+    let credentials: zod.infer<typeof loginSchema>
+    try {
+        credentials = loginSchema.parse(req.body)
+    } catch (error: any) {
+        res.json({ error: error.message })
+        return
+    }
 
-  const user = await authService.loginUser(credentials, User)
-  const jwtPayload: JWTPayload = {
-    email: user.email,
-    userId: user.id
-  }
-  const token = jwtService.generateToken(jwtPayload)
+    const user = await authService.loginUser(credentials, User)
+    const jwtPayload: JWTPayload = {
+        email: user.email,
+        userId: user.id,
+    }
+    const token = jwtService.generateToken(jwtPayload)
 
-  res.json({
-    token,
-    user
-  })
+    res.json({
+        token,
+        user,
+    })
 }
 
 export const registerForm = (req: Request, res: Response) => {
-  res.render("auth/register", { title: "Register Page" })
+    res.render('auth/register', { title: 'Register Page' })
 }
 
 export const register = async (req: Request, res: Response) => {
-  let userData: zod.infer<typeof registerSchema>
-  // validate data
-  try {
-    userData = registerSchema.parse(req.body)
-  } catch (error: any) {
-    console.log(error.message)
-    res.json({ errors: error.message })
-    return
-  }
+    let userData: zod.infer<typeof registerSchema>
+    // validate data
+    try {
+        userData = registerSchema.parse(req.body)
+    } catch (error: any) {
+        console.log(error.message)
+        res.json({ errors: error.message })
+        return
+    }
 
-  // created user
-  const userInfo = { name: userData.name, email: userData.email, password: userData.password }
-  try {
-    await authService.registerUser(userInfo, User)
-  } catch (error: any) {
-    throw error
-  }
+    // created user
+    const userInfo = {
+        name: userData.name,
+        email: userData.email,
+        password: userData.password,
+    }
+    try {
+        await authService.registerUser(userInfo, User)
+    } catch (error: any) {
+        throw error
+    }
 
-  res.json({ name: userInfo.name, email: userInfo.email })
+    res.json({ name: userInfo.name, email: userInfo.email })
 }

@@ -1,6 +1,6 @@
 #! /usr/bin/env node
-import { randomBytes } from "node:crypto"
-import updateEnvFile from "./updateEnvFile.js"
+import { randomBytes } from 'node:crypto'
+import updateEnvFile from './updateEnvFile.js'
 
 function genKey(): string {
     return randomBytes(32).toString('hex')
@@ -8,4 +8,4 @@ function genKey(): string {
 
 const key = genKey()
 
-updateEnvFile("APP_KEY", key)
+updateEnvFile('APP_KEY', key)

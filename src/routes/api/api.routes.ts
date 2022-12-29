@@ -1,10 +1,10 @@
-import {Router} from 'express'
+import { Router } from 'express'
 
-let apiRouter: Router;
-const r = apiRouter = Router()
+let apiRouter: Router
+const r = (apiRouter = Router())
 
-r.get("/", (req, res) => {
-    res.json({msg: "welcome to api route"})
+r.get('/', (req, res) => {
+    res.json({ msg: 'welcome to api route' })
 })
 
 export default apiRouter

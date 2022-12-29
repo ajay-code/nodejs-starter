@@ -1,5 +1,5 @@
-import config from "#src/config/index.config.js";
-import { Knex } from "knex"
+import config from '#src/config/index.config.js'
+import { Knex } from 'knex'
 
 const client: string = config.DB.dbClient
 
@@ -12,12 +12,12 @@ const connection: Knex.StaticConnectionConfig = {
 }
 
 const migrations: Knex.MigratorConfig = {
-    tableName: "knex_migrations",
-    directory: "../../db/migrations"
+    tableName: 'knex_migrations',
+    directory: '../../db/migrations',
 }
 
 const seeds: Knex.SeederConfig = {
-    directory: "../../db/seeds"
+    directory: '../../db/seeds',
 }
 
 interface KnexFile {
@@ -33,7 +33,7 @@ export const knexFile: KnexFile = {
             max: 7,
         },
         migrations,
-        seeds
+        seeds,
     },
 
     staging: {},
@@ -45,8 +45,8 @@ export const knexFile: KnexFile = {
             min: 2,
             max: 10,
         },
-        migrations
+        migrations,
     },
-};
+}
 
-export default knexFile;
+export default knexFile
