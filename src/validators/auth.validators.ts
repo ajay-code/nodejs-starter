@@ -1,13 +1,13 @@
-import * as zod from 'zod'
+import { z } from 'zod'
 
-export const registerSchema = zod
+export const registerSchema = z
     .object({
-        name: zod.string({ required_error: 'name is required' }),
-        email: zod
+        name: z.string({ required_error: 'name is required' }),
+        email: z
             .string({ required_error: 'email is required' })
             .email('email should be valid'),
-        password: zod.string({ required_error: 'password is required' }),
-        confirmPassword: zod.string({
+        password: z.string({ required_error: 'password is required' }),
+        confirmPassword: z.string({
             required_error: 'confirm password is required',
         }),
     })
@@ -16,7 +16,7 @@ export const registerSchema = zod
         path: ['confirmPassword'],
     })
 
-export const loginSchema = zod.object({
-    email: zod.string({ required_error: 'name is required' }),
-    password: zod.string({ required_error: 'password is required' }),
+export const loginSchema = z.object({
+    email: z.string({ required_error: 'name is required' }),
+    password: z.string({ required_error: 'password is required' }),
 })

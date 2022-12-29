@@ -1,13 +1,14 @@
 import { User } from '#src/models/user.model.js'
+import { loginSchema, registerSchema } from '#src/validators/auth.validators.js'
 import { Knex } from 'knex'
-import * as zod from 'zod'
+import { z } from 'zod'
 import passwordService from './password.service.js'
-import { registerSchema, loginSchema } from '#src/validators/auth.validators.js'
-
-interface UserData extends Omit<User, 'id' | 'created_at' | 'updated_at'> { }
 
 class AuthService {
-    public async registerUser(user: zod.infer<typeof registerSchema>, User: Knex.QueryBuilder<User>) {
+    public async registerUser(
+        user: z.infer<typeof registerSchema>,
+        User: Knex.QueryBuilder<User>
+    ) {
         let { email, name, password } = user
         const hashedPassword = await passwordService.hash(password)
         password = hashedPassword
@@ -20,7 +21,7 @@ class AuthService {
     }
 
     public async loginUser(
-        credentials: zod.infer<typeof loginSchema>,
+        credentials: z.infer<typeof loginSchema>,
         User: Knex.QueryBuilder<User>
     ): Promise<User> {
         const user: User = await User.where('email', credentials.email).first()
