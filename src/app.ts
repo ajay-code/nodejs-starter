@@ -9,8 +9,6 @@ import { getDirname } from '#src/utils/index.js'
 const __dirname = getDirname(import.meta.url)
 const app = express()
 
-// app.disable('x-powered-by')
-
 /**
  * parse request
  */
@@ -22,6 +20,7 @@ app.use(express.urlencoded({ extended: false })) // parse form data
  * add security middleware
  */
 app.use(helmet())
+// app.disable('x-powered-by')
 
 /**
  * Serve static files form public dir
