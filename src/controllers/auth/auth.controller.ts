@@ -2,7 +2,7 @@ import * as zod from 'zod'
 import { Request, Response } from 'express'
 import User from '#src/models/user.model.js'
 import authService from '#src/services/auth.service.js'
-import { registerSchema, loginSchema } from './validators.js'
+import { registerSchema, loginSchema } from '#src/validators/auth.validators.js'
 import jwtService, { JWTPayload } from '#src/services/jwt.service.js'
 
 export const loginForm = (req: Request, res: Response) => {
@@ -46,17 +46,8 @@ export const register = async (req: Request, res: Response) => {
         return
     }
 
-    // created user
-    const userInfo = {
-        name: userData.name,
-        email: userData.email,
-        password: userData.password,
-    }
-    try {
-        await authService.registerUser(userInfo, User)
-    } catch (error: any) {
-        throw error
-    }
+    // save user in DB
+    await authService.registerUser(userData, User)
 
-    res.json({ name: userInfo.name, email: userInfo.email })
+    res.json({ name: userData.name, email: userData.email })
 }
