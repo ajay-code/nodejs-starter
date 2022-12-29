@@ -9,4 +9,6 @@ export interface User {
     updated_at: string
 }
 
-export default db<User>('users')
+export default function getUserModel() {
+    return db<User>('users')
+}
