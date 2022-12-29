@@ -8,9 +8,7 @@ import { getDirname } from "#src/utils/index.js";
 const __dirname = getDirname(import.meta.url);
 const app = express();
 
-app.set("views", path.resolve(__dirname, "../views"));
-app.set("view engine", "ejs");
-app.disable('x-powered-by')
+// app.disable('x-powered-by')
 
 /**
  * parse request data
