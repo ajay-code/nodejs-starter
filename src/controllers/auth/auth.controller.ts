@@ -5,17 +5,13 @@ import authService from '#src/services/auth.service.js'
 import { registerSchema, loginSchema } from '#src/validators/auth.validators.js'
 import jwtService, { JWTPayload } from '#src/services/jwt.service.js'
 
-export const loginForm = (req: Request, res: Response) => {
-    res.render('auth/login', { title: 'Login Page' })
-}
-
 export const login = async (req: Request, res: Response) => {
     let credentials: z.infer<typeof loginSchema>
 
     try {
         credentials = loginSchema.parse(req.body)
     } catch (error: any) {
-        res.json({ error: error.message })
+        res.status(401).json({ error: error.message })
         return
     }
 
@@ -36,10 +32,6 @@ export const login = async (req: Request, res: Response) => {
     res.json({
         user,
     })
-}
-
-export const registerForm = (req: Request, res: Response) => {
-    res.render('auth/register', { title: 'Register Page' })
 }
 
 export const register = async (req: Request, res: Response) => {

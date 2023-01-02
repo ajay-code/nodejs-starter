@@ -4,10 +4,8 @@ import * as authController from '#src/controllers/auth/auth.controller.js'
 let authRouter: Router
 const r = (authRouter = Router())
 
-r.route('/login').get(authController.loginForm).post(authController.login)
+r.route('/login').post(authController.login)
 
-r.route('/register')
-    .get(authController.registerForm)
-    .post(authController.register)
+r.route('/register').post(authController.register)
 
 export default authRouter
