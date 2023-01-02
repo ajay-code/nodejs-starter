@@ -13,8 +13,8 @@ export interface User {
 export const up = (knex: Knex): Promise<void> => {
     return knex.schema.createTable('users', (table) => {
         table.increments('id')
-        table.string('email').notNullable().unique()
-        table.string('name').notNullable()
+        table.string('email', 90).notNullable().unique()
+        table.string('name', 100).notNullable()
         table.string('password').notNullable()
         table.timestamp('created_at').defaultTo(knex.raw('CURRENT_TIMESTAMP'))
         table.timestamp('updated_at').defaultTo(knex.raw('CURRENT_TIMESTAMP'))
