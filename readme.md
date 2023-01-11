@@ -28,7 +28,7 @@ This is a nodejs starter repo with typescript
 -   npm install
 -   npm run build
 -   npm run gen:key
--   npm run migrate
+-   npm run db:migrate
 -   npm run dev (for development) OR npm run build (to build the project but not run)
 
 ### NPM commands available
@@ -37,6 +37,7 @@ This is a nodejs starter repo with typescript
 -   npm run gen:key (generate APP_KEY)
 -   npm run start (runs compiled JS files)
 -   npm run dev (compile with watch and start the server)
--   npm run migrate (create database tables)
+-   npm run db:migrate (create database tables)
     -   setup DB\_ ENV variables properly for it to run
--   npm run rollback (rollbacks the created tables in database)
+-   npm run db:seed
+-   npm run db:rollback (rollbacks the created tables in database)
