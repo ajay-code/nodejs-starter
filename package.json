@@ -1,6 +1,6 @@
 {
     "name": "nodejs-starter",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "nodejs starter with express and typescript setup",
     "main": "./dist/app.js",
     "type": "module",
