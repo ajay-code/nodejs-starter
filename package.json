@@ -9,7 +9,7 @@
     },
     "engineStrict": true,
     "scripts": {
-        "test": "jest",
+        "test": "jest dist/",
         "start": "node dist/server.js",
         "build": "tsc",
         "dev": "concurrently \"tsc -w\" \"npm:nodemon\"",
