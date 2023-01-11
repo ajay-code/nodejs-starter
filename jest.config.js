@@ -5,5 +5,7 @@
 
 export default {
     transform: {},
-    extensionsToTreatAsEsm: ['.ts'],
+    moduleNameMapper: {
+        '#src/(.*)': '<rootDir>/dist/$1',
+    },
 }

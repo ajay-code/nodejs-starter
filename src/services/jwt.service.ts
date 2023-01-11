@@ -14,9 +14,14 @@ class JWTService {
         this.secretKey = secret
     }
 
-    public generateToken(payload: JWTPayload): string {
+    public generateToken(
+        payload: JWTPayload,
+        opt?: {
+            expiresIn: string | number
+        }
+    ): string {
         return jwt.sign(payload, this.secretKey, {
-            expiresIn: this.expiresIn,
+            expiresIn: opt?.expiresIn ?? this.expiresIn,
         })
     }
 
