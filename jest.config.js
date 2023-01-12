@@ -1,11 +1,17 @@
-/*
- * For a detailed explanation regarding each configuration property, visit:
- * https://jestjs.io/docs/configuration
- */
-
+/** @type {import('ts-jest').JestConfigWithTsJest} */
 export default {
-    transform: {},
-    moduleNameMapper: {
-        '#src/(.*)': '<rootDir>/dist/$1',
+    testEnvironment: 'node',
+    transform: {
+        '^.+\\.tsx?$': [
+            'ts-jest',
+            {
+                useESM: true,
+            },
+        ],
     },
+    moduleNameMapper: {
+        '#src/(.*)\\.js$': '<rootDir>/src/$1',
+        '^(\\.{1,2}/.*)\\.js$': '$1',
+    },
+    extensionsToTreatAsEsm: ['.ts'],
 }

@@ -9,8 +9,8 @@
     },
     "engineStrict": true,
     "scripts": {
-        "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest dist/",
-        "start": "jest",
+        "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest src/",
+        "start": "node dist/server.js",
         "build": "tsc",
         "dev": "concurrently \"tsc -w\" \"npm:nodemon\"",
         "nodemon": "nodemon -w dist dist/server.js",
