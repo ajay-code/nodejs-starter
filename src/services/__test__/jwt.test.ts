@@ -3,7 +3,7 @@ import jwtService from '../jwt.service.js'
 describe('jwtService', () => {
     const user = { userId: 1, email: 'user@email.com' }
 
-    it('should resolve to true and valid userId and email generated token', async () => {
+    it('should resolve to true and return valid userId and email for generated token', async () => {
         const fakeToken = jwtService.generateToken(user)
         const payload = jwtService.verifyToken(fakeToken)
         expect(payload).toEqual(expect.objectContaining(user))
