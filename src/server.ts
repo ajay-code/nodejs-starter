@@ -21,5 +21,15 @@ process.on('uncaughtException', (err) => {
 })
 
 process.on('beforeExit', (code) => {
-    db.destroy()
+    cleanupDB('beforeExit')
 })
+
+process.on('SIGINT', () => {
+    cleanupDB('SIGINT')
+    process.exit(1)
+})
+
+function cleanupDB(from: string = '--') {
+    console.log('Destroy DB connection. From: ', from)
+    db.destroy()
+}
