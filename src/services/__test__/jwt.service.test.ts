@@ -1,6 +1,6 @@
 import jwtService from '../jwt.service.js'
 
-describe('jwtService', () => {
+describe('jwtService test', () => {
     const user = { userId: 1, email: 'user@email.com' }
 
     it('should resolve to true and return valid userId and email for generated token', async () => {
