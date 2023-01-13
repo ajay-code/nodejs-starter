@@ -26,7 +26,7 @@ class AuthService {
     ): Promise<User> {
         const user: User = await User.where('email', credentials.email).first()
         if (!user) {
-            throw Error('no user found')
+            throw Error('user not found')
         }
 
         const passwordValid = await passwordService.compare(
