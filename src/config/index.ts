@@ -8,10 +8,10 @@ const API_URL = `${BASE_URL}/api`
 const APP_KEY = process.env.APP_KEY || null
 
 if (!APP_KEY) {
-    throw Error('Please define APP_KEY in [.env]')
+    throw Error('Please define APP_KEY in Environment (or [.env] file)')
 }
 
-export default {
+const config = {
     NODE_ENV,
     BASE_URL,
     APP_PORT,
@@ -19,3 +19,5 @@ export default {
     APP_KEY,
     DB,
 }
+
+export default config

@@ -1,10 +1,11 @@
 import { Knex } from 'knex'
-import passwordService from '#src/services/password.service.js'
+import { PasswordService } from '#src/services/password.service.js'
 
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
+const passwordService = new PasswordService()
 export const seed = async function (knex: Knex) {
     // Deletes ALL existing entries
     await knex('users').del()

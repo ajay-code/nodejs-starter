@@ -9,6 +9,8 @@ export interface User {
     updated_at: string
 }
 
+export interface UserInfo extends Omit<User, 'password'> {}
+
 export default function getUserModel() {
     return db<User>('users')
 }

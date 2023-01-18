@@ -1,4 +1,4 @@
-import config from '#src/config/index.config.js'
+import config from '#src/config/index.js'
 import { Request, Response } from 'express'
 
 function isHttpError(error: Error | HttpError): error is HttpError {

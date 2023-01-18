@@ -1,6 +1,6 @@
+import { UnauthorizedError } from '#src/errors/UnauthorizedError.js'
 import JWTService, { JWTPayload } from '#src/services/jwt.service.js'
 import { Request, Response } from 'express'
-// import User from '#src/models/user.model.js'
 
 declare global {
     namespace Express {
@@ -26,24 +26,10 @@ export async function isAuthenticated(
     const payload = JWTService.verifyToken(token)
 
     if (!payload) {
-        res.status(401).json({ error: 'invalid token' })
+        throw new UnauthorizedError('invalid token')
     }
 
     req.payload = payload as JWTPayload
-
-    // const user = await User.select(
-    //     'id',
-    //     'name',
-    //     'email',
-    //     'created_at',
-    //     'updated_at'
-    // )
-    //     .where({ id: req.payload.userId })
-    //     .first()
-    // if (!user) {
-    //     throw Error('user not found')
-    // }
-    // req.user = user
 
     next()
 }

@@ -1,11 +1,14 @@
-import { User } from '#src/models/user.model.js'
-import { loginSchema, registerSchema } from '#src/validators/auth.validators.js'
+import { UnauthorizedError } from '#src/errors/index.js'
+import { User } from '#src/models/index.js'
+import { loginSchema, registerSchema } from '#src/validators/index.js'
 import { Knex } from 'knex'
 import { z } from 'zod'
-import passwordService from './password.service.js'
+import { PasswordService } from './password.service.js'
 
-class AuthService {
-    public async registerUser(
+const passwordService = new PasswordService()
+
+export class AuthService {
+    public async register(
         user: z.infer<typeof registerSchema>,
         User: Knex.QueryBuilder<User>
     ) {
@@ -20,13 +23,13 @@ class AuthService {
         })
     }
 
-    public async loginUser(
+    public async login(
         credentials: z.infer<typeof loginSchema>,
         User: Knex.QueryBuilder<User>
     ): Promise<User> {
         const user: User = await User.where('email', credentials.email).first()
         if (!user) {
-            throw Error('user not found')
+            throw new UnauthorizedError('user not found')
         }
 
         const passwordValid = await passwordService.compare(
@@ -34,11 +37,9 @@ class AuthService {
             user.password
         )
         if (!passwordValid) {
-            throw Error('password not valid')
+            throw new UnauthorizedError('password not valid')
         }
 
         return user
     }
 }
-
-export default new AuthService()
