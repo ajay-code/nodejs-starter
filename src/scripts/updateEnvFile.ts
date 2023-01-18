@@ -5,7 +5,7 @@ function updateEnvFile(key: string, value: string) {
     const lines = data.split('\n')
     let found = false
 
-    const newLines = lines.map((line) => {
+    const newLines = lines.map((line: string) => {
         if (line.startsWith(`${key}=`)) {
             found = true
             return `${key}=${value}`
