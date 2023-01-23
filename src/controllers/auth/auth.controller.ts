@@ -1,9 +1,9 @@
-import { z } from 'zod'
-import { Request, Response } from 'express'
 import getUserModel from '#src/models/user.model.js'
 import { AuthService } from '#src/services/auth.service.js'
-import { registerSchema, loginSchema } from '#src/validators/auth.validators.js'
 import jwtService, { JWTPayload } from '#src/services/jwt.service.js'
+import { loginSchema, registerSchema } from '#src/validators/auth.validators.js'
+import { Request, Response } from 'express'
+import { z } from 'zod'
 
 const authService = new AuthService()
 export const login = async (req: Request, res: Response) => {

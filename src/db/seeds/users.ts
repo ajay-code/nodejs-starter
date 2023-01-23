@@ -1,5 +1,5 @@
-import { Knex } from 'knex'
 import { PasswordService } from '#src/services/password.service.js'
+import { Knex } from 'knex'
 
 /**
  * @param { import("knex").Knex } knex
