@@ -2,12 +2,15 @@ import * as middleware from '#src/middleware/index.js'
 import addRoutes from '#src/routes/index.routes.js'
 import { getDirname } from '#src/utils/index.js'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
 import path from 'node:path'
 
 const __dirname = getDirname(import.meta.url)
 const app = express()
+
+app.use(cors())
 
 /**
  * parse request
