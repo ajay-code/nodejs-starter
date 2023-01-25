@@ -2,7 +2,8 @@ import { Express, Request, Response } from 'express'
 import apiRouter from './api/api.routes.js'
 import { isAuthenticated } from '#src/middleware/auth.middleware.js'
 import authRouter from './auth.routes.js'
-import getUserModel from '#src/models/user.model.js'
+import { User } from '#src/models/user.model.js'
+import db from '#src/lib/knex/db.js'
 
 /**
  * Add all the routes to the express app
@@ -14,14 +15,9 @@ export const addRoutes = (app: Express) => {
     })
 
     app.get('/me', isAuthenticated, async (req: Request, res: Response) => {
-        const User = getUserModel()
-        const user = await User.select(
-            'id',
-            'email',
-            'name',
-            'created_at',
-            'updated_at'
-        )
+        const user = await db
+            .table<User>('users')
+            .select('id', 'email', 'name', 'created_at', 'updated_at')
             .where('id', req.payload.userId)
             .first()
         res.json(user)

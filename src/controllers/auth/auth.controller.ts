@@ -1,4 +1,3 @@
-import getUserModel from '#src/models/user.model.js'
 import { AuthService } from '#src/services/auth.service.js'
 import jwtService, { JWTPayload } from '#src/services/jwt.service.js'
 import { loginSchema, registerSchema } from '#src/validators/auth.validators.js'
@@ -16,8 +15,7 @@ export const login = async (req: Request, res: Response) => {
         return
     }
 
-    const User = getUserModel()
-    const user = await authService.login(credentials, User)
+    const user = await authService.login(credentials)
     const jwtPayload: JWTPayload = {
         email: user.email,
         userId: user.id,
@@ -48,9 +46,8 @@ export const register = async (req: Request, res: Response) => {
         return
     }
 
-    const User = getUserModel()
     // save user in DB
-    await authService.register(userData, User)
+    await authService.register(userData)
 
     res.json({ name: userData.name, email: userData.email })
 }
